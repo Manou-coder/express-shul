@@ -8,7 +8,12 @@ export const validateZmanim = (
   next: NextFunction
 ) => {
   try {
-    zmanimSchema.parse(req.query)
+    if (req.method === 'POST') {
+      zmanimSchema.parse(req.body)
+    } else {
+      zmanimSchema.parse(req.query)
+    }
+
     next()
   } catch (error) {
     const zodError = error as ZodError

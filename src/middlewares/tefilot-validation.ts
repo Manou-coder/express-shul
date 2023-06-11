@@ -1,17 +1,11 @@
 import { NextFunction, Request, Response } from 'express'
 import { ZodError, z } from 'zod'
 
-const zmanimSchema = z.object({
-  date: z.string().nullish(),
-  timeZoneId: z.string(),
-  locationName: z.string().nullish(),
-  latitude: z.string(),
-  longitude: z.string(),
-  elevation: z.string().nullish(),
-  complexZmanim: z.string().nullish(),
-})
+const tefilotSchema = z.object({}).nonstrict()
 
-// type ValidatedZmanimData = z.infer<typeof zmanimSchema>
+const allTefilotSchema = z.array(tefilotSchema)
+
+type ValidatedTefilotData = z.infer<typeof allTefilotSchema>
 
 export const validateTefilot = (
   req: Request,
@@ -19,7 +13,7 @@ export const validateTefilot = (
   next: NextFunction
 ) => {
   try {
-    zmanimSchema.parse(req.query)
+    tefilotSchema.parse(req.query)
     next()
   } catch (error) {
     const zodError = error as ZodError

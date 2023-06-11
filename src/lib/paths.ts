@@ -3,9 +3,11 @@ export const Paths = {
   Zmanim: {
     Base: '/zmanim',
     Get: '/all',
+    Add: '/add',
   },
   Tefilot: {
     Base: '/tefilot',
     Get: '/all',
+    Add: '/add',
   },
 }
