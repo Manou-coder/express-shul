@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import express, { NextFunction, Request, Response } from 'express'
+import { Paths } from './lib/paths'
+import { apiRouter } from './routes/api'
 
 // Configure server
-const app = express()
+export const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// Add APIs, must be after middleware
+app.use(Paths.Base, apiRouter)
 
 // Error handling middleware
 app.use(
@@ -23,5 +28,3 @@ app.use(
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server')
 })
-
-export default app
