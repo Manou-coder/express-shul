@@ -2,11 +2,13 @@
 import express, { NextFunction, Request, Response } from 'express'
 import { Paths } from './lib/paths'
 import { apiRouter } from './routes/api'
+import cors from 'cors'
 
 // Configure server
 export const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())
 
 // Add APIs, must be after middleware
 app.use(Paths.Base, apiRouter)

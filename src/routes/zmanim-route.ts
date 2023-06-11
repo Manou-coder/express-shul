@@ -7,5 +7,6 @@ import {
 } from '../controllers/zmanim-controller'
 
 export const zmanimRouter = Router()
+
 zmanimRouter.get(Paths.Zmanim.Get, validateZmanim, getAllZmanim)
 zmanimRouter.post(Paths.Zmanim.Add, validateZmanim, addOrUpadateCity)
