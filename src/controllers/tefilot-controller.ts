@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { getZmaneiAyom } from '../services/kosher-zmanim'
 import { Options } from 'kosher-zmanim'
 
-export const getAllZmanim = (req: Request, res: Response) => {
+export const getAllTefilot = (req: Request, res: Response) => {
   try {
     const query = req.query as unknown as Options
 

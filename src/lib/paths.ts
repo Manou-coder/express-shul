@@ -4,6 +4,8 @@ export const Paths = {
     Base: '/zmanim',
     Get: '/all',
   },
+  Tefilot: {
+    Base: '/tefilot',
+    Get: '/all',
+  },
 }
-
-export const Papa = 'hello'
