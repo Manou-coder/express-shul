@@ -1,17 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { ZodError, z } from 'zod'
-
-const zmanimSchema = z.object({
-  date: z.string().nullish(),
-  timeZoneId: z.string(),
-  locationName: z.string().nullish(),
-  latitude: z.string(),
-  longitude: z.string(),
-  elevation: z.string().nullish(),
-  complexZmanim: z.string().nullish(),
-})
-
-// type ValidatedZmanimData = z.infer<typeof zmanimSchema>
+import { zmanimSchema } from '../schemas/zmanimSchema'
 
 export const validateZmanim = (
   req: Request,

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { getZmaneiAyom } from '../services/kosher-zmanim'
 import { Options } from 'kosher-zmanim'
+import { orm } from '../database/orm'
 
 export const getAllTefilot = (req: Request, res: Response) => {
   try {
@@ -17,6 +18,8 @@ export const getAllTefilot = (req: Request, res: Response) => {
     }
 
     const data = getZmaneiAyom(options)
+    console.log('data: ', data)
+    orm.saveDb(data)
     return res.status(200).json({ data })
   } catch (error) {
     const CustomError = error as Error
