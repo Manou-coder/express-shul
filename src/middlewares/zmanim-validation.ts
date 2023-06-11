@@ -23,6 +23,11 @@ export const validateZmanim = (
     next()
   } catch (error) {
     const zodError = error as ZodError
-    res.status(400).json({ error: zodError.message })
+    res.status(400).json({
+      error: {
+        message: zodError.message,
+        name: zodError.name,
+      },
+    })
   }
 }
