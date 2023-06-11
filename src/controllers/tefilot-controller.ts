@@ -5,7 +5,6 @@ import { catchError } from '../lib/catch-error'
 export const getAllTefilot = async (req: Request, res: Response) => {
   try {
     const allTefilot = await orm.openDb()
-    console.log('allTefilot: ', allTefilot)
     return res.status(200).json({ data: allTefilot })
   } catch (error) {
     catchError(error, res)
