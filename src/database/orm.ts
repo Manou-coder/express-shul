@@ -2,7 +2,9 @@ import jsonfile from 'jsonfile'
 import { AllTefilot } from '../models/Tefilot'
 import { Options } from 'kosher-zmanim'
 
-// import { IUser } from '@src/models/User'
+// important for typescipt compiling
+import './database.json'
+// ---------------------------------
 
 // **** Variables **** //
 
