@@ -6,8 +6,9 @@ import { Options } from 'kosher-zmanim'
 
 export const getAllCity = async (req: Request, res: Response) => {
   try {
-    const allTefilot = await orm.openDb()
-    return res.status(200).json({ data: allTefilot })
+    const db = await orm.openDb()
+    const city = db.city
+    return res.status(200).json({ data: city })
   } catch (error) {
     catchError(error, res)
   }
