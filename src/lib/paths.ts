@@ -10,4 +10,10 @@ export const Paths = {
     Get: '/all',
     Add: '/add',
   },
+  City: {
+    Base: '/city',
+    Get: '/all',
+    Zman: '/zman',
+    Add: '/add',
+  },
 }
