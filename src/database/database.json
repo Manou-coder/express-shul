@@ -1,1 +1,11 @@
-{}
+{
+  "city": {
+    "date": "2023-06-11T18:06:37.849Z",
+    "locationName": "Jerusalem",
+    "latitude": 31.771959,
+    "longitude": 35.217018,
+    "timeZoneId": "Asia/Jerusalem",
+    "elevation": 800,
+    "complexZmanim": true
+  }
+}
