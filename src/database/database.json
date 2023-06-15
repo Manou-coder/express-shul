@@ -1,11 +1,1 @@
-{
-  "city": {
-    "date": "2023-06-11T18:06:37.849Z",
-    "locationName": "Jerusalem",
-    "latitude": 31.771959,
-    "longitude": 35.217018,
-    "timeZoneId": "Asia/Jerusalem",
-    "elevation": 800,
-    "complexZmanim": true
-  }
-}
+{"city":{"date":"2023-06-14","locationName":"paris","latitude":0,"longitude":0,"timeZoneId":"Africa/Abidjan","elevation":0,"complexZmanim":true},"tefilot":[{"id":"123456è_","name":"Chol","created_at":"Wed, 14 Jun 2023 08:46:19 GMT","tefilot":[{"tefila_name":"shacharit","schedule":"08:00"}]}]}
