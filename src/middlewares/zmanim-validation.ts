@@ -9,7 +9,6 @@ export const validateZmanim = (
 ) => {
   try {
     if (req.method === 'POST') {
-      console.log('req.body: ', req.body)
       zmanimSchema.parse(req.body)
     } else {
       zmanimSchema.parse(req.query)

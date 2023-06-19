@@ -7,13 +7,10 @@ import './database.json'
 // ---------------------------------
 
 const DATABASE_ENV = process.cwd() + '/src/database'
-console.log('DATABASE_ENV: ', DATABASE_ENV)
-console.log('__dirname: ', __dirname)
 
 // **** Variables **** //
 
 const DB_FILE_NAME = 'database.json'
-console.log('hello', DATABASE_ENV + '/' + DB_FILE_NAME)
 
 // **** Types **** //
 
