@@ -14,12 +14,14 @@
   "author": "m-coder",
   "license": "ISC",
   "dependencies": {
+    "@m-coder/pdftoimage": "^3.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonfile": "^6.1.0",
     "kosher-zmanim": "^0.8.2",
     "morgan": "^1.10.0",
+    "multer": "1.4.5-lts.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
@@ -27,6 +29,7 @@
     "@types/express": "^4.17.17",
     "@types/jsonfile": "^6.1.1",
     "@types/morgan": "^1.9.4",
+    "@types/multer": "^1.4.7",
     "@types/node": "^20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",

@@ -16,4 +16,9 @@ export const Paths = {
     Zman: '/zman',
     Add: '/add',
   },
+  Images: {
+    Base: '/images',
+    Get: '/all',
+    Add: '/add',
+  },
 }

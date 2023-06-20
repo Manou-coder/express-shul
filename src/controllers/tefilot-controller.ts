@@ -21,7 +21,7 @@ export const getAllTefilot = async (req: Request, res: Response) => {
         if (tefila?.schedule.match(/^\D/)) {
           // console.log('commmence par une lettre')
           const scheduleArr = tefila.schedule.split(',')
-          // console.log('scheduleArr: ', scheduleArr)
+          console.log('scheduleArr: ', scheduleArr)
           const zman = zmanim[scheduleArr[0]]
           // console.log('zman: ', zman)
           const newSchedule = calculateModifiedZmanTime(
@@ -61,11 +61,14 @@ const calculateModifiedZmanTime = (
   let zmanTime = new Date(date)
   // console.log('zmanTime: ', zmanTime)
   // console.log('addOrRemove: ', addOrRemove)
-  // console.log('nearest: ', nearest)
+  console.log('nearest: ', nearest)
   if (addOrRemove !== null || addOrRemove !== undefined) {
     zmanTime = manipulateDateByMinutes(zmanTime, addOrRemove)
   }
+  console.log('RoundDirections.Up: ', RoundDirections.Up)
+  console.log('RoundDirections.Down: ', RoundDirections.Down)
   if (nearest === RoundDirections.Down || nearest === RoundDirections.Up) {
+    console.log('nearest 2: ', nearest)
     zmanTime = roundToNearestFiveMinutes(zmanTime, nearest)
   }
   return zmanTime
