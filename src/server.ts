@@ -10,6 +10,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
+// Serve static files
+app.use(express.static('public'))
+
 // Add APIs, must be after middleware
 app.use(Paths.Base, apiRouter)
 
