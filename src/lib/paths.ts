@@ -21,4 +21,8 @@ export const Paths = {
     Get: '/all',
     Add: '/add',
   },
+  System: {
+    Base: '/system',
+    Get: '/all',
+  },
 }
