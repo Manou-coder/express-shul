@@ -1,37 +1,25 @@
 import { Request, Response } from 'express'
-import { orm } from '../database/orm'
 import { catchError } from '../lib/catch-error'
-import { getZmaneiAyom } from '../services/kosher-zmanim'
-import { Options } from 'kosher-zmanim'
-import multer, { Multer } from 'multer'
 import { convertPDFtoIMG } from '@m-coder/pdftoimage'
 import fs from 'fs'
 
 export const getAllImages = async (req: Request, res: Response) => {
   try {
-    const db = await orm.openDb()
-    const city = db.city
-    return res.status(200).json({ data: 'hello' })
+    const images = await readImagesDirectory()
+    const imagesPath = images?.map((image) => `/images/${image}`)
+    return res.status(200).json({ data: imagesPath })
   } catch (error) {
     catchError(error, res)
   }
 }
 
-// export const addOrUpadateImages = async (req: Request, res: Response) => {
-//   console.log('req: ', req)
-//   try {
-//     const body = req.body
-//     console.log('body: ', body)
-//     return res.status(200).json({ data: 'papa' })
-//   } catch (error) {
-//     catchError(error, res)
-//   }
-// }
-
 export const addOrUpadateImages = async (req: Request, res: Response) => {
   const uploadedFile = req.file
-  const pdfPath = `public/uploads/${uploadedFile?.filename}`
-  const imagePath = `public/images/${uploadedFile?.filename}`
+  const filename = uploadedFile?.filename
+  const newFilename = filename?.replace(/.pdf/g, '.png')
+
+  const pdfPath = `public/uploads/${filename}`
+  const imagePath = `public/images/${newFilename}`
 
   console.log('uploadedFile: ', uploadedFile)
 
@@ -41,20 +29,56 @@ export const addOrUpadateImages = async (req: Request, res: Response) => {
     imagePath: imagePath,
     scale: 10,
   })
-  console.log('Conversion successful!')
 
-  // delete file
-  if (fs.existsSync(pdfPath)) {
-    fs.unlink(pdfPath, (err) => {
-      if (err) {
-        console.error('Erreur lors de la suppression du fichier :', err)
-        return
-      }
+  // delete pdf
+  deleteFile(pdfPath)
 
-      console.log('Le fichier a été supprimé avec succès')
+  // if more than 20 images, delete the oldest
+  clearOldestImage()
+
+  res.json({ data: `/images/${newFilename}` })
+}
+
+const clearOldestImage = () => {
+  const directoryImagePath = 'public/images/'
+  // read directory
+  fs.readdir(directoryImagePath, (err, files) => {
+    console.log('files: ', files)
+    if (err) {
+      console.error('Erreur lors de la lecture du dossier :', err)
+      return
+    }
+    // delete file if more than 20
+    if (files.length > 20) {
+      deleteFile(directoryImagePath + files[0])
+    }
+  })
+}
+
+const deleteFile = (path: string) => {
+  fs.unlink(path, (err) => {
+    if (err) {
+      throw new Error(err.message)
+    }
+  })
+  console.log('File deleted: ', path)
+}
+
+const readImagesDirectory = async () => {
+  const directoryImagePath = 'public/images/'
+  try {
+    const files = await new Promise((resolve, reject) => {
+      fs.readdir(directoryImagePath, (err, files) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(files)
+        }
+      })
     })
-  } else {
-    console.error("Le fichier spécifié n'existe pas")
+    return files as string[]
+  } catch (error) {
+    console.log('error: ', error)
+    return null
   }
-  res.json({ success: true })
 }

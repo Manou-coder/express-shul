@@ -3,12 +3,12 @@ import multer from 'multer'
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     console.log('file 1: ', file)
-    // Spécifier le dossier de destination pour les fichiers téléchargés
+    // specify destination
     cb(null, 'public/uploads/')
   },
   filename: function (req, file, cb) {
     console.log('file 2: ', file)
-    // Générer un nom de fichier unique
+    // generate unique name
     cb(null, Date.now() + '-' + file.originalname)
   },
 })
